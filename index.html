@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <title>Mary Katherine's Birthday Advent Calendar!</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cute+Font&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -152,9 +155,15 @@
   <script src="script.js"></script>
 </body>
 <div class="rng">
-  <h2>Ticket Machine. Click to see how many snack tickets you get today.</h2>
-  <button onclick="generateNumber()">click</button>
-  <p id="result">:)</p>
+  <h2>Harper Snack Ticket Machine.</h2>
+  <h3>Pet Harper To Win Your Prize </h3>
+  <img src="images/click.png" 
+    id="rngTicket" 
+    class="rng-image" 
+    draggable="false">
+  <p id="result">You Win:</p>
+
+  <button id="addTicket">Click This If You Took Your Medicine Today</button>
 </div>
 
 
