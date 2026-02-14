@@ -99,13 +99,24 @@ window.toggle = function(element) {
 const addButton = document.getElementById("addTicket");
 
 if (addButton && resultEl) {
+  let addUsed = false; // tracks if +1 ticket has been used
+
   addButton.addEventListener("click", () => {
+    // Condition 1: only allow if user already generated a number
+    if (!generated) return; // do nothing if they haven’t rubbed yet
+
+    // Condition 2: only allow once per load
+    if (addUsed) return;
+
+    // Update ticket count
     const match = resultEl.textContent.match(/\d+/);
     let currentTickets = match ? parseInt(match[0]) : 0;
     currentTickets += 1;
     resultEl.textContent = `You Win: ${currentTickets} Ticket(s)`;
 
-    // --- Trigger confetti ---
+    addUsed = true; // lock the button
+
+    // Trigger confetti
     confetti({
       particleCount: 50,
       spread: 70,
@@ -114,6 +125,7 @@ if (addButton && resultEl) {
     });
   });
 }
+
 
 
 });
