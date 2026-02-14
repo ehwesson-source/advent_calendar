@@ -58,7 +58,7 @@ window.toggle = function(element) {
   let rubbing = false;
   let generated = false;
   let rubCount = 0;
-  const RUB_THRESHOLD = 12; // short, responsive rub
+  const RUB_THRESHOLD = 175; // medium rub time
 
   // Start rubbing
   ticket.addEventListener("mousedown", () => rubbing = true);
@@ -96,16 +96,24 @@ window.toggle = function(element) {
      +1 Ticket Button
   ---------------------------- */
 
-  const addButton = document.getElementById("addTicket");
+const addButton = document.getElementById("addTicket");
 
-  if (addButton) {
-    addButton.addEventListener("click", () => {
-      const match = resultEl.textContent.match(/\d+/);
-      let currentTickets = match ? parseInt(match[0]) : 0;
+if (addButton && resultEl) {
+  addButton.addEventListener("click", () => {
+    const match = resultEl.textContent.match(/\d+/);
+    let currentTickets = match ? parseInt(match[0]) : 0;
+    currentTickets += 1;
+    resultEl.textContent = `You Win: ${currentTickets} Ticket(s)`;
 
-      currentTickets += 1;
-      resultEl.textContent = `You Win: ${currentTickets} Ticket(s)`;
+    // --- Trigger confetti ---
+    confetti({
+      particleCount: 50,
+      spread: 70,
+      origin: { y: 0.6 },
+      colors: ['#f7c948', '#ff6b6b', '#4ade80', '#1e3a8a']
     });
-  }
+  });
+}
+
 
 });
