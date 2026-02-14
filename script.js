@@ -87,7 +87,7 @@ window.toggle = function(element) {
   }
 
   function generateNumber() {
-    const number = Math.floor(Math.random() * 6) + 1; // 1–6
+    const number = Math.floor(Math.random() * 4) + 1; // 1–6
     resultEl.textContent = `You Win: ${number} Ticket(s)`;
     generated = true;
   }
