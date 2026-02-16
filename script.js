@@ -87,7 +87,7 @@ window.toggle = function(element) {
   }
 
   function generateNumber() {
-    const number = Math.floor(Math.random() * 4) + 1; // 1–6
+    const number = Math.floor(Math.random() * 3) + 1;
     resultEl.textContent = `You Win: ${number} Ticket(s)`;
     generated = true;
   }
@@ -126,6 +126,37 @@ if (addButton && resultEl) {
   });
 }
 
+const addButton2 = document.getElementById("brushTeeth");
+
+if (addButton2 && resultEl) {
+  let addUsed = false; // tracks if +1 ticket has been used
+
+  addButton2.addEventListener("click", () => {
+    // Condition 1: only allow if user already generated a number
+    if (!generated) return; // do nothing if they haven’t rubbed yet
+
+    // Condition 2: only allow once per load
+    if (addUsed) return;
+
+    // Update ticket count
+    const match = resultEl.textContent.match(/\d+/);
+    let currentTickets = match ? parseInt(match[0]) : 0;
+    currentTickets += 1;
+    resultEl.textContent = `You Win: ${currentTickets} Ticket(s)`;
+
+    addUsed = true; // lock the button
+
+    addUsed = true; // lock the button
+
+    // Trigger confetti
+    confetti({
+      particleCount: 50,
+      spread: 70,
+      origin: { y: 0.6 },
+      colors: ['#f7c948', '#ff6b6b', '#4ade80', '#1e3a8a']
+    });
+  });
+}
 
 
 });
