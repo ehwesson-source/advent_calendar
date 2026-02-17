@@ -1,6 +1,6 @@
 body {
   font-family: "Cute Font", sans-serif;
-  background: #F1EBD8;
+  background: #D1ECE7;
   text-align: center;
 }
 
@@ -8,17 +8,17 @@ body {
   font-family: "Cute Font", sans-serif;
   font-weight: 400;
   font-style: normal;
-  color: #222B1B;
+  color: #22352C;
 }
 
 
 h1 {
   margin: 20px 0;
-  color: #222B1B;
+  color: #22352C;
   font: 32px "Cute Font", sans-serif;
 }
 h2{
-  color: #222B1B;
+  color: #22352C;
 }
 
 
@@ -32,8 +32,8 @@ h2{
 }
 
 .day {
-  background: #787D46;
-  border: 2px solid #222B1B;
+  background: #BD7F01;
+  border: 2px solid #22352C;
   padding: 15px;
   cursor: pointer;
   position: relative;
@@ -62,7 +62,7 @@ h2{
 }
 
 .rng-image {
-  width: clamp(120px, 25vw, 180px);
+  width: clamp(350px, 25vw, 400px);
   cursor: grab;
   transition: transform 0.15s ease;
   height: auto;
@@ -81,9 +81,9 @@ h2{
   font-weight: 400;
   font-size: 1rem;
   letter-spacing: 0.5px;
-  color: #222B1B;
-  background-color: #787D46;
-  border: 2px, solid #222B1B;
+  color: #22352C;
+  background-color: #BD7F01;
+  border: 2px, solid #22352C;
   border-radius: 8px;
   padding: 8px 15px;
   cursor: pointer;
@@ -99,9 +99,9 @@ h2{
   font-weight: 400;
   font-size: 1rem;
   letter-spacing: 0.5px;
-  color: #222B1B;
-  background-color: #787D46;
-  border: 2px, solid #222B1B;
+  color: #22352C;
+  background-color: #BD7F01;
+  border: 2px, solid #22352C;
   border-radius: 8px;
   padding: 8px 15px;
   cursor: pointer;
@@ -117,14 +117,14 @@ h2{
   position: fixed;
   bottom: 10px;
   right: 10px;
-  background: #787D46;
-  border: 2px solid #222B1B;
+  background: #BD7F01;
+  border: 2px solid #22352C;
   border-radius: 8px;
   padding: 10px;
   max-width: 220px;
   font-family: "Cute Font", sans-serif;
   font-size: 0.8rem;
-  color: #222B1B;
+  color: #22352C;
   box-shadow: 0 2px 6px rgba(0,0,0,0.15);
   z-index: 100;
 }
@@ -134,3 +134,4 @@ h2{
   padding-left: 18px;
   text-align: left;
 }
+

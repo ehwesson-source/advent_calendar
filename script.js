@@ -51,46 +51,79 @@ window.toggle = function(element) {
   ---------------------------- */
 
   const ticket = document.getElementById("rngTicket");
-  const resultEl = document.getElementById("result");
+const resultEl = document.getElementById("result");
 
-  if (!ticket || !resultEl) return;
+if (!ticket || !resultEl) return;
 
-  let rubbing = false;
-  let generated = false;
-  let rubCount = 0;
-  const RUB_THRESHOLD = 175; // medium rub time
+let rubbing = false;
+let generated = false;
+let rubCount = 0;
+const RUB_THRESHOLD = 175; // medium rub time
+const MAX_ROTATION = 5;
+const MAX_OFFSET = 8;      // max wiggle in px
 
-  // Start rubbing
-  ticket.addEventListener("mousedown", () => rubbing = true);
-  ticket.addEventListener("touchstart", () => rubbing = true);
+// Start rubbing
+ticket.addEventListener("mousedown", () => rubbing = true);
+ticket.addEventListener("touchstart", () => rubbing = true);
 
-  // Stop rubbing
-  document.addEventListener("mouseup", stopRub);
-  document.addEventListener("touchend", stopRub);
+// Stop rubbing
+document.addEventListener("mouseup", stopRub);
+document.addEventListener("touchend", stopRub);
 
-  function stopRub() {
-    rubbing = false;
-    rubCount = 0;
+function stopRub() {
+  rubbing = false;
+  rubCount = 0;
+
+  // Reset ticket position
+  ticket.style.transform = "translate(0px, 0px) scale(1)";
+}
+
+// Mouse/touch movement
+ticket.addEventListener("mousemove", handleRub);
+ticket.addEventListener("touchmove", handleRub);
+
+function handleRub() {
+  if (!rubbing || generated) return;
+
+  rubCount++;
+
+  // Wiggle the ticket randomly
+  const offsetX = (Math.random() - 0.5) * 2 * MAX_OFFSET;
+  const offsetY = (Math.random() - 0.5) * 2 * MAX_OFFSET;
+  ticket.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(1)`;
+
+  if (rubCount >= RUB_THRESHOLD) {
+    generateNumber();
   }
+}
 
-  // Mouse movement
-  ticket.addEventListener("mousemove", handleRub);
-  ticket.addEventListener("touchmove", handleRub);
+function generateNumber() {
+  const number = Math.floor(Math.random() * 3) + 1; // 1–3 tickets
+  resultEl.textContent = `You Win: ${number} Ticket(s)`;
+  generated = true;
 
-  function handleRub() {
-    if (!rubbing || generated) return;
+  // Pop animation for result
+  resultEl.style.transition = "transform 0.3s ease";
+  resultEl.style.transform = "scale(1.5)";
+  setTimeout(() => resultEl.style.transform = "scale(1)", 300);
 
-    rubCount++;
-    if (rubCount >= RUB_THRESHOLD) {
-      generateNumber();
-    }
+  // Reset ticket position
+  ticket.style.transform = "translate(0px, 0px) rotate(0deg) scale(1)";
+
+   if (!document.querySelector(".ticket-heart")) {
+    const heart = document.createElement("span");
+    heart.textContent = "❤️";
+    heart.className = "ticket-heart";
+    heart.style.position = "absolute";
+    heart.style.top = ticket.offsetTop + "px";    // align with ticket top
+    heart.style.left = ticket.offsetLeft + "px";  // align with ticket left
+    heart.style.fontSize = "1.5rem";
+    heart.style.pointerEvents = "none";
+
+    // Append to the same parent as the ticket (the .rng div)
+    ticket.parentElement.appendChild(heart);
   }
-
-  function generateNumber() {
-    const number = Math.floor(Math.random() * 3) + 1;
-    resultEl.textContent = `You Win: ${number} Ticket(s)`;
-    generated = true;
-  }
+}
 
   /* ---------------------------
      +1 Ticket Button
