@@ -77,7 +77,7 @@ function generateNumber() {
   // Add umbrella icon (appears, no pop)
   if (!document.querySelector(".ticket-heart")) {
     const heart = document.createElement("span");
-    heart.textContent = "☂️";
+    heart.textContent = "😏";
     heart.className = "ticket-heart";
     heart.style.position = "absolute";
     heart.style.top = ticket.offsetTop + "px";
